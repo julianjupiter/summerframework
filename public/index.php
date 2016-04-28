@@ -1,20 +1,23 @@
 <?php
-include __DIR__ . '/../application/configuration/path.php';
-foreach ([SYSTEM, CONTROLLER, MODEL] as $path) {
-    foreach (glob($path . '*.php') as $filename) {
-        require_once $filename;
-    }
-}
+
+include __DIR__ . '/../application/Configuration/path.php';
+
+$includePath = APPLICATION;
+set_include_path($includePath);
+require_once SYSTEM . 'autoload.php';
+spl_autoload_register($autoloader);
+
+use Summer\Summer;
+use Summer\View;
 
 $app = new Summer();
-$app->get('/', function(){
-    echo "<h1>Welcome home!</h1>";
+$app->get('/', function() {
+    View::render('includes.header');
+    View::render('home');
+    View::render('includes.footer');
 });
-
-$app->get('/home', function(){
-    echo "<h1>>Welcome home!</h1>";
+$app->get('/about', ['Controller\AboutController', 'index']);
+$app->get('/hello', function() {
+    echo "<h1>Hello!</h1>";
 });
-
-$app->get('/about', ['AboutController','index']);
-
 $app->run();

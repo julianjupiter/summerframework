@@ -1,28 +1,32 @@
 <?php
+
+namespace Summer;
+
 class Summer {
+
     private $routes = [];
     private $methods = [];
-    
+
     public function get($pattern, $action, $name = null) {
         if ($name == null) {
             $this->routes[$pattern] = $action;
-            $this->methods[$pattern] = RequestMethdod::GET;
+            $this->methods[$pattern] = RequestMethod::GET;
         }
     }
-    
+
     public function post($pattern, callable $action, $name = null) {
         if ($name == null) {
             $this->routes[$pattern] = $action;
-            $this->methods[$pattern] = RequestMethdod::POST;
+            $this->methods[$pattern] = RequestMethod::POST;
         }
     }
-    
+
     private function hasRoute($route, $method) {
         if (array_key_exists($route, $this->routes) && $this->methods[$route] == $method) {
             return true;
         }
     }
-    
+
     public function run($pageRequest = null) {
         if ($pageRequest == null) {
             $pageRequest = Request::getCurrentUri();
@@ -34,4 +38,5 @@ class Summer {
             }
         }
     }
+
 }

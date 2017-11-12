@@ -1,23 +1,19 @@
 <?php
 
-include __DIR__ . '/../application/Configuration/path.php';
+require_once __DIR__ . '/../config/appConfig.php';
+require_once __DIR__ . '/../application/autoload.php';
 
-$includePath = APPLICATION;
-set_include_path($includePath);
-require_once SYSTEM . 'autoload.php';
-spl_autoload_register($autoloader);
+use Core\Application;
 
-use Summer\Summer;
-use Summer\View;
+$app = new Application();
 
-$app = new Summer();
-$app->get('/', function() {
-    View::render('includes.header');
-    View::render('home');
-    View::render('includes.footer');
-});
-$app->get('/about', ['Controller\AboutController', 'index']);
-$app->get('/hello', function() {
-    echo "<h1>Hello!</h1>";
-});
+$app->addRoute('GET', '/', 'Controller\HomeController', 'index');
+$app->addRoute('GET', '/contacts', 'Controller\ContactController', 'findAll');
+$app->addRoute('GET', '/contacts/create', 'Controller\ContactController', 'create');
+$app->addRoute('POST', '/contacts/create', 'Controller\ContactController', 'create');
+$app->addRoute('GET', '/contacts/view/{num}', 'Controller\ContactController', 'findById');
+$app->addRoute('GET', '/contacts/update/{num}', 'Controller\ContactController', 'update');
+$app->addRoute('POST', '/contacts/update', 'Controller\ContactController', 'update');
+$app->addRoute('GET', '/contacts/delete/{num}', 'Controller\ContactController', 'delete');
+
 $app->run();

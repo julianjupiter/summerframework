@@ -51,7 +51,8 @@ Open your browser and point it to http://127.0.0.1:8000.
 3. Add views.
 4. Add route.
 
-For example, if you want create pages about Book, just copy existing example:
+For example, if you want create pages about Book, just copy existing example
+
     - Controller/ContactController.php
     - Model/Contact.php
     - View/contact

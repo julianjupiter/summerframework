@@ -5,7 +5,6 @@ if (is_file($file)) {
     return false;
 }
 
-$_SERVER['SCRIPT_NAME'] = '/index.php';
 $_SERVER['SCRIPT_FILENAME'] = $_SERVER['DOCUMENT_ROOT'] . '/index.php';
 chdir($_SERVER['DOCUMENT_ROOT']);
 require $_SERVER['SCRIPT_FILENAME'];

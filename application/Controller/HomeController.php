@@ -2,13 +2,13 @@
 
 namespace Controller;
 
-use Core\View;
+use Core\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->view = new View();
+        parent::__construct();
     }
     
     public function index()

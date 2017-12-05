@@ -2,18 +2,18 @@
 
 namespace Controller;
 
-use Core\View;
+use Core\Controller;
 use Model\Contact;
+use Helper\Input;
 
-class ContactController
-{
-    private $model;
-    private $view;
-    
+class ContactController extends Controller
+{    
+    private $input;
+
     public function __construct()
     {
-        $this->model = new Contact();
-        $this->view = new View();
+        parent::__construct(new Contact());
+        $this->input = new Input();
     }
     
     public function findAll()
@@ -28,10 +28,9 @@ class ContactController
     public function create()
     {
         $this->view->setAttribute('applicationName', APPLICATION_NAME);
-        $this->view->setAttribute('pageName', 'Contacts');
-        
+        $this->view->setAttribute('pageName', 'Contacts');        
 
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'GET')
+        if ($this->request->isHttpMethod() && $this->request->isHttpGetMethod())
         {
             $data = [
                 'name' => '', 
@@ -45,12 +44,12 @@ class ContactController
             $this->view->render('contact/create');
         }
         
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
+        if ($this->request->isHttpMethod() && $this->request->isHttpPostMethod()) 
         {
-            $name = isset($_POST['name']) ? $_POST['name'] : NULL;
-            $mobileNumber = isset($_POST['mobileNumber']) ? $_POST['mobileNumber'] : NULL;
-            $address = isset($_POST['address']) ? $_POST['address'] : NULL;
-            $emailAddress = isset($_POST['emailAddress']) ? $_POST['emailAddress'] : NULL;
+            $name = $this->input->post('name');
+            $mobileNumber = $this->input->post('mobileNumber');
+            $address = $this->input->post('address');
+            $emailAddress = $this->input->post('emailAddress');
             $dateCreated = date('Y-m-d H:i:s');
 
             $data = [
@@ -99,7 +98,7 @@ class ContactController
         $this->view->setAttribute('applicationName', APPLICATION_NAME);
         $this->view->setAttribute('pageName', 'Contacts');
 
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'GET' && $id !== '')
+        if ($this->request->isHttpMethod() && $this->request->isHttpGetMethod() && $id !== '')
         {
             $status = ['submitted' => false];
             $data = $this->model->findById($id);
@@ -114,13 +113,13 @@ class ContactController
             $this->view->render('contact/update');
         }
         
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST')
+        if ($this->request->isHttpMethod() && $this->request->isHttpPostMethod())
         {
-            $id = isset($_POST['id']) ? $_POST['id'] : NULL;
-            $name = isset($_POST['name']) ? $_POST['name'] : NULL;
-            $mobileNumber = isset($_POST['mobileNumber']) ? $_POST['mobileNumber'] : NULL;
-            $address = isset($_POST['address']) ? $_POST['address'] : NULL;
-            $emailAddress = isset($_POST['emailAddress']) ? $_POST['emailAddress'] : NULL;
+            $id = $this->input->post('id');
+            $name = $this->input->post('name');
+            $mobileNumber = $this->input->post('mobileNumber');
+            $address = $this->input->post('address');
+            $emailAddress = $this->input->post('emailAddress');
             $dateCreated = date('Y-m-d H:i:s');
 
             $data = [
@@ -136,7 +135,9 @@ class ContactController
                 if ($this->model->update($data) >= 1)
                 {
                     $this->view->redirect('/contacts');
-                } else {
+                }
+                else
+                {
                     $this->view->redirect('/contacts');
                 }
             }
@@ -152,12 +153,14 @@ class ContactController
     
     public function delete($id)
     {
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'GET' && $id !== '')
+        if ($this->request->isHttpMethod() && $this->request->isHttpGetMethod() && $id !== '')
         {        
             if ($this->model->delete($id) >= 1)
             {
                 $this->view->redirect('/contacts');   
-            } else {
+            } 
+            else 
+            {
                 $this->view->redirect('/contacts');
             }
         }

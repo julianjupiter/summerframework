@@ -14,7 +14,7 @@ $configs = [
         'DB_PORT' => '3306',
         'DB_NAME' => 'summerframework',
         'DB_USER' => 'root',
-        'DB_PASSWORD' => 'admin123',
+        'DB_PASSWORD' => 'admin',
         'DB_CHAR_SET' => 'utf-8'
     ]
 ];

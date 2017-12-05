@@ -1,6 +1,6 @@
 
         <!--Begin nav-->
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top navbar-summer">
             <div class="container">
                 <!-- Begin .nav-header -->
                 <div class="navbar-header">

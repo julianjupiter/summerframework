@@ -5,16 +5,28 @@ html {
 
 body {
   margin-top:60px;
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
+}
+
+.navbar-summer {
+  background-color: #FF9800;
+  border-color: #FF9800;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+  color: #2196F3;
+}
+.navbar-summer .navbar-nav > .active > a, 
+.navbar-summer .navbar-nav > .active > a:focus, 
+.navbar-summer .navbar-nav > .active > a:hover {
+  background-color: #FF9800;
 }
 
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  /*height: 60px;*/
   background-color: #f5f5f5;
 }
 

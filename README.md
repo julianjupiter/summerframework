@@ -39,11 +39,11 @@ This is the output in my personal machine:
 ```
 ...
 PHP 7.0.22-0ubuntu0.16.04.1 Development Server started at Sun Nov 12 22:54:12 2017
-Listening on http://127.0.0.1:8000
+Listening on http://127.0.0.1:3000
 Document root is /home/julez/Workspace/php/summerframework/public
 Press Ctrl-C to quit.
 ``` 
-Open your browser and point it to http://127.0.0.1:8000.
+Open your browser and point it to http://127.0.0.1:3000.
 
 ## Adding Page
 1. Add controller.

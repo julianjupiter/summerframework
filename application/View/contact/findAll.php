@@ -8,7 +8,7 @@
                     <p>
                         <a href="/contacts/create" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                     </p>
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-striped table-condensed">
                         <thead>
                             <tr>
                                 <th>ID</th>

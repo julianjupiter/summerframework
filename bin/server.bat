@@ -9,4 +9,4 @@ rem It should not be used on a public network.                             #
 rem Taken from http://php.net/manual/en/features.commandline.webserver.php #
 rem ########################################################################
 
-php -S 127.0.0.1:8000 -t public/ bin/router.php
+php -S 127.0.0.1:3000 -t public/ bin/router.php

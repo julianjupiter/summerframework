@@ -10,5 +10,4 @@
 # Taken from http://php.net/manual/en/features.commandline.webserver.php #
 ##########################################################################
 
-#/usr/bin/php -S 127.0.0.1:3000 -t public/ bin/router.php
-/C/apps/php/php -S 127.0.0.1:3000 -t public/ ../bin/router.php
+/usr/bin/php -S 127.0.0.1:3000 -t public/ ../bin/router.php

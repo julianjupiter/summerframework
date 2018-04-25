@@ -1,18 +1,14 @@
 # Summer Framework
-Summer Framework is a PHP MVC microframework. It is intended to be simple so that one can easily learn MVC in PHP. It does not include any external library or framework. There are a lot of boilerplates. The only magic is the simple routing which is inspired by AltoRouter.
+[Summer Framework](http://julianjupiter.github.io/summerframework/) is a PHP MVC microframework. It is intended to be simple so that one can easily learn MVC in PHP. It does not include any external library or framework. There are a lot of boilerplates. The only magic is the simple routing which is inspired by AltoRouter.
 
-## Cloning
+## Clone
 To clone this project, simply execute the following command using Terminal:
-```
-$ git clone git://github.com/julianjupiter/summerframework.git
-```
-Or:
 ```
 $ git clone https://github.com/julianjupiter/summerframework.git
 ```
 You can also download it by clicking the **Clone or download** button.
 
-## Running
+## Run
 To run this project, create database first:
 ```
 CREATE DATABASE summerframework;
@@ -31,7 +27,7 @@ Go to the project directory:
 ```
 $ cd summerframework
 ```
-And execute **bin/server.sh** script. This will run the PHP built-in web server with port 8000 (can be changed to any available port) - as of PHP 5.4.0, the CLI SAPI provides a built-in web server.
+And execute **bin/server.sh** script. This will run the PHP built-in web server with port 3000 (can be changed to any available port) - as of PHP 5.4.0, the CLI SAPI provides a built-in web server.
 ```
 $ ./bin/server.sh
 ```

@@ -23,19 +23,20 @@ class Application
         'slug' => '[a-zA-Z\-]+'
     ];
     
-    public function addRoute($method, $path, $controller, $action)
+    public function addRoute($method, $path, $handler)
     {
+        list($controller, $action) =explode('@', $handler);
         $this->routes[] = [$method, $path, $controller, $action];
     }
 
-    public function get($path, $controller, $action) 
+    public function get($path, $handler) 
     {
-        $this->addRoute(HttpMethod::GET, $path, $controller, $action);
+        $this->addRoute(HttpMethod::GET, $path, $handler);
     }
 
-    public function post($path, $controller, $action) 
+    public function post($path, $handler) 
     {
-        $this->addRoute(HttpMethod::POST, $path, $controller, $action);
+        $this->addRoute(HttpMethod::POST, $path, $handler);
     }
     
     private function compileRoute($path) {

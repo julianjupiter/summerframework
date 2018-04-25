@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Helper\HttpMethod;
+
 class Application
 {
     private $routes = [];
@@ -25,23 +27,40 @@ class Application
     {
         $this->routes[] = [$method, $path, $controller, $action];
     }
+
+    public function get($path, $controller, $action) 
+    {
+        $this->addRoute(HttpMethod::GET, $path, $controller, $action);
+    }
+
+    public function post($path, $controller, $action) 
+    {
+        $this->addRoute(HttpMethod::POST, $path, $controller, $action);
+    }
     
     private function compileRoute($path) {
             $route = str_replace(['{', '}'], '', $path);
             $routeSegments = explode('/', $route);
             $newRouteSegments = [];
             $sameSubpatterns = [];
-            for ($i = 0; $i < count($routeSegments); $i++) {
-                if (array_key_exists($routeSegments[$i], $this->paramPatterns)) {
-                    if (in_array($routeSegments[$i], $sameSubpatterns)) {
+            for ($i = 0; $i < count($routeSegments); $i++) 
+            {
+                if (array_key_exists($routeSegments[$i], $this->paramPatterns)) 
+                {
+                    if (in_array($routeSegments[$i], $sameSubpatterns)) 
+                    {
                         $counter = count($sameSubpatterns);
                         $newRouteSegments[$i] = '(?P<' . $routeSegments[$i] . $counter . '>' . $this->paramPatterns[$routeSegments[$i]] . ')';
                         array_push($sameSubpatterns, $routeSegments[$i] . $counter);
-                    } else {
+                    } 
+                    else 
+                    {
                         $newRouteSegments[$i] = '(?P<' . $routeSegments[$i] . '>' . $this->paramPatterns[$routeSegments[$i]] . ')';
                         array_push($sameSubpatterns, $routeSegments[$i]);
                     }
-                } else {
+                } 
+                else 
+                {
                     $newRouteSegments[$i] = $routeSegments[$i];
                 }
             }
@@ -55,7 +74,8 @@ class Application
         $isMatched = false;
         $params = [];
         
-        if($requestUri === null) {
+        if($requestUri === null) 
+        {
             $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
             
             if ($uri != '/') 
@@ -72,20 +92,26 @@ class Application
         
         $controller = '';
         $matches = [];
-        foreach ($this->routes as $route) {
+        foreach ($this->routes as $route) 
+        {
             list($method, $path, $_controller, $action) = $route;
             
             $isMethodMatched = false;          
-            if (strcasecmp($requestMethod, $method) === 0) {
+            if (strcasecmp($requestMethod, $method) === 0) 
+            {
 				$isMethodMatched = true;
 			}
             
-            if($isMethodMatched) {
-                if ($path === $requestUri) {
+            if($isMethodMatched) 
+            {
+                if ($path === $requestUri) 
+                {
                     $isMatched = true;
                     $controller = $_controller;
                     break;
-                } else {
+                } 
+                else 
+                {
                     $newRoute = $this->compileRoute($path);
                     
                     if (preg_match($newRoute, $requestUri, $_matches))
@@ -103,7 +129,8 @@ class Application
         {
             $paramCount = (count($matches) - 1) / 2;
             $params = [];
-            for ($i = 1; $i <= $paramCount; $i++) {
+            for ($i = 1; $i <= $paramCount; $i++) 
+            {
                 array_push($params, $matches[$i]);
             }
             
@@ -125,6 +152,7 @@ class Application
         } 
         else 
         {
+            header("HTTP/1.0 404 Not Found");
             include_once PATH_VIEW . 'errors/pageNotFound.php';
         }
     }

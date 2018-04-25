@@ -5,16 +5,19 @@ require_once __DIR__ . '/../application/autoload.php';
 
 use Core\Application;
 use Helper\HttpMethod;
+use Helper\Session;
+
+Session::start();
 
 $app = new Application();
-
-$app->addRoute(HttpMethod::GET, '/', 'Controller\HomeController', 'index');
-$app->addRoute(HttpMethod::GET, '/contacts', 'Controller\ContactController', 'findAll');
-$app->addRoute(HttpMethod::GET, '/contacts/create', 'Controller\ContactController', 'create');
-$app->addRoute(HttpMethod::POST, '/contacts/create', 'Controller\ContactController', 'create');
-$app->addRoute(HttpMethod::GET, '/contacts/view/{num}', 'Controller\ContactController', 'findById');
-$app->addRoute(HttpMethod::GET, '/contacts/update/{num}', 'Controller\ContactController', 'update');
-$app->addRoute(HttpMethod::POST, '/contacts/update', 'Controller\ContactController', 'update');
-$app->addRoute(HttpMethod::GET, '/contacts/delete/{num}', 'Controller\ContactController', 'delete');
-
+$app->get('/', 'Controller\HomeController', 'index');
+$app->get('/auth/login', 'Controller\AuthenticationController', 'index');
+$app->post('/auth/login', 'Controller\AuthenticationController', 'login');
+$app->get('/contacts', 'Controller\ContactController', 'findAll');
+$app->get('/contacts/create', 'Controller\ContactController', 'create');
+$app->post('/contacts/create', 'Controller\ContactController', 'create');
+$app->get('/contacts/view/{num}', 'Controller\ContactController', 'findById');
+$app->get('/contacts/update/{num}', 'Controller\ContactController', 'update');
+$app->post('/contacts/update', 'Controller\ContactController', 'update');
+$app->get('/contacts/delete/{num}', 'Controller\ContactController', 'delete');
 $app->run();

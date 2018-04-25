@@ -49,11 +49,11 @@ class Contact extends Model
         return $statement->rowCount();
     }
     
-    public function delete($data)
+    public function delete($id)
     {
         $sql = 'DELETE FROM contact WHERE id = :id';
         $statement = $this->db->prepare($sql);
-        $statement->execute([':id' => $data['id']]);
+        $statement->execute([':id' => $id]);
         return $statement->rowCount();
     }
 }

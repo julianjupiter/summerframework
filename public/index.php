@@ -11,8 +11,6 @@ Session::start();
 
 $app = new Application();
 $app->get('/', 'Controller\HomeController', 'index');
-$app->get('/auth/login', 'Controller\AuthenticationController', 'index');
-$app->post('/auth/login', 'Controller\AuthenticationController', 'login');
 $app->get('/contacts', 'Controller\ContactController', 'findAll');
 $app->get('/contacts/create', 'Controller\ContactController', 'create');
 $app->post('/contacts/create', 'Controller\ContactController', 'create');

@@ -1,0 +1,56 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  padding-top: 5rem;
+}
+
+.starter-template {
+  color: #9E9E9E;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.starter-template > #title {
+  color: #FF9800;
+}
+
+.navbar-summer {
+  background-color: #FF9800;
+  border-color: #FF9800;
+}
+
+.navbar-summer a {
+  color: #FFFFFF !important;
+}
+
+.navbar-summer .navbar-nav > .active > a, 
+.navbar-summer .navbar-nav > .active > a:focus, 
+.navbar-summer .navbar-nav > .active > a:hover {
+  background-color: #FF9800;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,1);
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;   
+  padding-top: 10px;
+  padding-bottom: 2px;
+}
+
+.footer .container .col-sm-12 {
+  text-align: center;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
